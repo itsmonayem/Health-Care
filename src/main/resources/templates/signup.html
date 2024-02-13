@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<section>
+    <div th:replace="fragments::upper-nav-login">
+    </div>
+    <div class="signup">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="my-card mt-3">
+
+<!--                                                alert message-->
+                        <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert">
+                            <p th:text="${message.content}"></p>
+                        </div>
+
+
+                        <h1 class="text-center">Register Here</h1>
+                        <form th:action="@{/do-register}" method="post" th:object="${userDto}">
+                            <div class="mb-3">
+                                <label for="inputName" class="form-label">Your Name</label>
+                                <input type="text"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+                                       id="inputName"
+                                       placeholder="Enter Here"
+                                       name="name"
+                                       th:value="${userDto.name}">
+                                <div th:each="e : ${#fields.errors('name')}"
+                                     th:text="${e}"
+                                     class="invalid-feedback">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label">Your Email</label>
+                                <input type="email"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+                                       id="inputEmail"
+                                       placeholder="Enter Here"
+                                       name="email"
+                                       th:value="${userDto.email}">
+                                <div th:each="e : ${#fields.errors('email')}"
+                                     th:text="${e}"
+                                     class="invalid-feedback">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="inputContact" class="form-label">Your Contact No.</label>
+                                <input type="number"
+                                       class="form-control"
+                                       id="inputContact"
+                                       placeholder="Enter Here"
+                                       name="contact_no"
+                                       th:value="${userDto.contact_no}">
+<!--                                <div th:each="e : ${#fields.errors('email')}"-->
+<!--                                     th:text="${e}"-->
+<!--                                     class="invalid-feedback">-->
+<!--                                </div>-->
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">Your Password</label>
+                                <input type="password"
+                                       class="form-control"
+                                       id="inputPassword"
+                                       placeholder="Enter Here"
+                                       name="password"
+                                       required>
+                            </div>
+
+
+                            <!--                            terms and condition-->
+                            <select class="form-select mb-2" aria-label="Default select example" name="role" required>
+                                <option value="">Register as a</option>
+                                <option value="ROLE_USER">User</option>
+                                <option value="ROLE_DOCTOR">Doctor</option>
+                                <option value="ROLE_HOSPITAL">Hospital</option>
+                            </select>
+
+                            <div class="container text-center">
+                                <button type="submit" class="btn bg-primary text-white">Submit</button>
+                                <button type="reset" class="btn btn-warning text-white">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

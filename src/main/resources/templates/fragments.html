@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination</title>
+</head>
+<body>
+    <div th:fragment="pagination" th:object="${paginationInfo}">
+        <nav th:if="${paginationInfo.totalPages != 0}" aria-label="Page navigation example">
+            <ul class="pagination">
+                <li>
+                    <a class="page-link" th:classappend="${(paginationInfo.currentPage > 1)?'':'disabled'}" th:href="@{${paginationInfo.queries}+${paginationInfo.currentPage - 1}}">Prev</a>
+                </li>
+                <li class="page-item" th:each="i:${#numbers.sequence(paginationInfo.currentPage - 4 , paginationInfo.currentPage + 2)}">
+                    <a th:if="${i>=0&&i<paginationInfo.totalPages}" class="page-link" th:classappend="${paginationInfo.currentPage == i + 1?'active':''}" th:href="@{${paginationInfo.queries}+${i+1}}">
+                        <span th:if="${i == paginationInfo.currentPage - 4 || i == paginationInfo.currentPage + 2}">...</span>
+                        <span th:if="${!(i == paginationInfo.currentPage - 4 || i == paginationInfo.currentPage + 2)}" th:text="${i+1}"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="page-link" th:classappend="${(paginationInfo.currentPage != paginationInfo.totalPages)?'':'disabled'}" th:href="@{${paginationInfo.queries}+${paginationInfo.currentPage + 1}}">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div th:fragment="upper-nav-logout">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Health Care</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto navbar-nav-scroll text-uppercase" style="--bs-scroll-height: 100px;">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/about}">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/signup}">Signup</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div th:fragment="upper-nav-login">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Health Care</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto navbar-nav-scroll text-uppercase" style="--bs-scroll-height: 100px;">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/about}">About</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div th:fragment="side-bar-doctor">
+        <div class="sidebar">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/doctor/add-note}">Add Note</a>
+            <a th:href="@{/doctor/show-notes}">View Notes</a>
+            <a th:href="@{/admin/show-users}">View Users</a>
+            <a th:href="@{/admin/show-notes}">View Notes</a>
+            <a href="">Profile</a>
+        </div>
+    </div>
+</body>
+</html>
