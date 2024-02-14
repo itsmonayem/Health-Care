@@ -1,0 +1,36 @@
+.bg-primary {
+    background: #009688 !important;
+}
+
+.sidebar{
+    height: 100vh;
+    width: 15%;
+    background: #e2e2e2;
+    padding-top: 15px;
+    float: left;
+}
+
+.sidebar a{
+    display: block;
+    width: 100%;
+    padding: 10px 25px;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar a:hover{
+    background: white;
+}
+
+.new-container{
+    width: 85%;
+    color: black;
+    float: right;
+}
+.new-container-extend{
+    width: 100%!important;
+}
+
+.hide-content{
+    display: none;
+}

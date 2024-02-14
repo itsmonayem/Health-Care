@@ -34,7 +34,7 @@ public class MySuccessHandler implements AuthenticationSuccessHandler {
             System.out.println(upAt);
             CustomUserDetails customUserDetails = (CustomUserDetails) upAt.getPrincipal();
             if("ROLE_DOCTOR".equals(customUserDetails.getUser().getRole())){
-                response.sendRedirect("/doctor/");
+                response.sendRedirect("/doctor/checkVerification");
             } else if("ROLE_HOSPITAL".equals(customUserDetails.getUser().getRole())){
                 response.sendRedirect("/hospital/");
             } else if("ROLE_USER".equals(customUserDetails.getUser().getRole())){
