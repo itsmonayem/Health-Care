@@ -1,7 +1,8 @@
 package com.example.healthcare.Controller.admin;
 
 import com.example.healthcare.entities.Doctor;
-import com.example.healthcare.service.AdminService;
+import com.example.healthcare.service.admin.AdminService;
+import com.example.healthcare.service.admin.DoctorAdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class DoctorsAdminController {
-    private final AdminService adminService;
+    private final DoctorAdminService doctorAdminService;
 
-    public DoctorsAdminController(AdminService adminService) {
-        this.adminService = adminService;
+    public DoctorsAdminController(DoctorAdminService doctorAdminService) {
+        this.doctorAdminService = doctorAdminService;
     }
 
     @GetMapping("/")
@@ -28,7 +29,7 @@ public class DoctorsAdminController {
 
     @GetMapping("/verify-doctors")
     public String verifyDoctors(Model model) {
-        List<Doctor> unVerifiedDoctorsList = this.adminService.unVerifiedDoctors(false);
+        List<Doctor> unVerifiedDoctorsList = this.doctorAdminService.unVerifiedDoctors(false);
         model.addAttribute("unVerifiedDoctorsList", unVerifiedDoctorsList);
         return "admin/verify-doctor-page";
     }
@@ -36,14 +37,14 @@ public class DoctorsAdminController {
 
     @GetMapping("/approveDoctor/{id}")
     public String ApproveDoctor(@PathVariable("id") long user_id, Model model) {
-        this.adminService.approvedDoctor(user_id);
+        this.doctorAdminService.approvedDoctor(user_id);
         return "redirect:/admin/verify-doctors";
     }
 
 
     @GetMapping("/doctors")
     public String doctors(Model model) {
-        List<Doctor> inServiceDoctorsList = this.adminService.unVerifiedDoctors(true);
+        List<Doctor> inServiceDoctorsList = this.doctorAdminService.unVerifiedDoctors(true);
         model.addAttribute("inServiceDoctorsList",inServiceDoctorsList);
         return "admin/doctors";
     }

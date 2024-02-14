@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<section>
+    <div th:replace="fragments::upper-nav-login"></div>
+    <div th:replace="fragments::side-bar-doctor"></div>
+    <div class="signup">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="my-card mt-3">
+
+                        <!--                                                alert message-->
+                        <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert">
+                            <p th:text="${message.content}"></p>
+                        </div>
+
+
+                        <h1 class="text-center">Complete Your Profile</h1>
+                        <form th:action="@{'/hospital/do-complete-profile'}" method="post" th:object="${hospitalDto}">
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label">Location</label>
+                                <input type="text"
+                                       class="form-control"
+                                       th:classappend="${#fields.hasErrors('location')?'is-invalid':''}"
+                                       id="inputEmail"
+                                       placeholder="Enter Here"
+                                       name="location"
+                                       th:value="${hospitalDto.location}">
+                                <div th:each="e : ${#fields.errors('location')}"
+                                     th:text="${e}"
+                                     class="invalid-feedback">
+                                </div>
+                            </div>
+
+<!--                            <div class="mb-3">-->
+<!--                                <label for="inputContact" class="form-label">Your Designation</label>-->
+<!--                                <input type="text"-->
+<!--                                       class="form-control"-->
+<!--                                       th:classappend="${#fields.hasErrors('designation')?'is-invalid':''}"-->
+<!--                                       id="inputContact"-->
+<!--                                       placeholder="Enter Here"-->
+<!--                                       name="designation"-->
+<!--                                       th:value="${doctorDto.designation}">-->
+<!--                                <div th:each="e : ${#fields.errors('designation')}"-->
+<!--                                     th:text="${e}"-->
+<!--                                     class="invalid-feedback">-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <div class="container text-center">
+                                <button type="submit" class="btn bg-primary text-white">Submit</button>
+                                <button type="reset" class="btn btn-warning text-white">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

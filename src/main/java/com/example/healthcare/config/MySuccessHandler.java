@@ -36,7 +36,7 @@ public class MySuccessHandler implements AuthenticationSuccessHandler {
             if("ROLE_DOCTOR".equals(customUserDetails.getUser().getRole())){
                 response.sendRedirect("/doctor/checkVerification");
             } else if("ROLE_HOSPITAL".equals(customUserDetails.getUser().getRole())){
-                response.sendRedirect("/hospital/");
+                response.sendRedirect("/hospital/checkVerification");
             } else if("ROLE_USER".equals(customUserDetails.getUser().getRole())){
                 response.sendRedirect("/user/");
             } else if("ROLE_ADMIN".equals(customUserDetails.getUser().getRole())){

@@ -1,12 +1,9 @@
 package com.example.healthcare.Controller;
 
-import com.example.healthcare.dao.UserRepository;
 import com.example.healthcare.dto.DoctorDto;
-import com.example.healthcare.entities.Doctor;
 import com.example.healthcare.helper.Message;
 import com.example.healthcare.service.DoctorService;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

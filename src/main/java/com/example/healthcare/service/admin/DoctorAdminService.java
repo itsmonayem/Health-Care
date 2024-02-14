@@ -1,26 +1,25 @@
-package com.example.healthcare.service.impl;
+package com.example.healthcare.service.admin;
 
 import com.example.healthcare.dao.DoctorRepository;
 import com.example.healthcare.entities.Doctor;
-import com.example.healthcare.service.AdminService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
-public class AdminServiceImpl implements AdminService {
+@Service
+public class DoctorAdminService {
     private final DoctorRepository doctorRepository;
 
-    public AdminServiceImpl(DoctorRepository doctorRepository) {
+    public DoctorAdminService(DoctorRepository doctorRepository) {
         this.doctorRepository = doctorRepository;
     }
 
-    @Override
+
     public List<Doctor> unVerifiedDoctors(boolean verificationStatus) {
         return this.doctorRepository.findAllDoctorsByVerification(verificationStatus);
     }
 
-    @Override
     public void approvedDoctor(long user_id) {
         Doctor doctor = this.doctorRepository.getDoctorByUserId(user_id);
         doctor.setVerified(true);
