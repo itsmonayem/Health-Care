@@ -20,29 +20,27 @@
 
 
                         <h1 class="text-center">Complete Your Profile</h1>
-                        <form th:action="@{'/doctor/do-complete-profile'}" method="post" th:object="${doctorDto}">
-
-
+                        <form th:action="@{'/doctor/doApplyHospital'}" method="post" th:object="${timeSchedule}">
+                            <select name="hospital" class="form-select mb-2" aria-label="Default select example" required>
+                                <option value="">Register as a</option>
+                                <option th:each="hospital: ${hospitalsList}" th:value="${hospital.id}" th:text="${hospital.user.name}"></option>
+                            </select>
                             <div class="mb-3">
-                                <label for="inputContact" class="form-label">Your Designation</label>
-                                <input type="text"
+                                <label for="inputContact" class="form-label">Your</label>
+                                <input type="time"
                                        class="form-control"
-                                       th:classappend="${#fields.hasErrors('designation')?'is-invalid':''}"
                                        id="inputContact"
                                        placeholder="Enter Here"
-                                       name="designation"
-                                       th:value="${doctorDto.designation}">
-                                <div th:each="e : ${#fields.errors('designation')}"
-                                     th:text="${e}"
-                                     class="invalid-feedback">
-                                </div>
+                                       name="startScheduleTime">
                             </div>
-
-
-                            <select name="doctorExpertise" class="form-select mb-2" aria-label="Default select example" required>
-                                <option value="">Expertise In</option>
-                                <option th:each="expertise: ${expertiseList}" th:value="${expertise.id}" th:text="${expertise.expertiseField}"></option>
-                            </select>
+                            <div class="mb-3">-->
+                                <label for="inputEndTime" class="form-label">Your</label>
+                                <input type="time"
+                                       class="form-control"
+                                       id="inputEndTime"
+                                       placeholder="Enter Here"
+                                       name="endScheduleTime">
+                            </div>
 
                             <div class="container text-center">
                                 <button type="submit" class="btn bg-primary text-white">Submit</button>

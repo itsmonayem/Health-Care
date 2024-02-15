@@ -1,6 +1,6 @@
 package com.example.healthcare.config;
 
-import com.example.healthcare.dao.UserRepository;
+import com.example.healthcare.repositories.UserRepository;
 import com.example.healthcare.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

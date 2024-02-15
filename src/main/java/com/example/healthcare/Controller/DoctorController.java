@@ -1,8 +1,12 @@
 package com.example.healthcare.Controller;
 
 import com.example.healthcare.dto.DoctorDto;
+import com.example.healthcare.dto.DrReqTimeScheduleDto;
+import com.example.healthcare.entities.DoctorExpertise;
+import com.example.healthcare.entities.Hospital;
 import com.example.healthcare.helper.Message;
-import com.example.healthcare.service.DoctorService;
+import com.example.healthcare.service.Doctor.DoctorService;
+import com.example.healthcare.service.admin.AdminService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,19 +15,21 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
     private final DoctorService doctorService;
+    private final AdminService adminService;
 
-    public DoctorController(DoctorService doctorService) {
+    public DoctorController(DoctorService doctorService, AdminService adminService) {
         this.doctorService = doctorService;
+        this.adminService = adminService;
     }
 
     @GetMapping("/")
     public String home(Model model) {
-        model.addAttribute("doctorStatus","Welcome");
         return "doctor/home";
     }
 
@@ -34,7 +40,7 @@ public class DoctorController {
             return "redirect:/doctor/completeProfile";
         } else if (this.doctorService.isVerified(principal)) {
             model.addAttribute("doctorStatus","Congratulation you are in Service");
-            return "doctor/home";
+            return "redirect:/doctor/";
         } else if (this.doctorService.isCompleteProfile(principal)){
             model.addAttribute("doctorStatus","Please keep patient and wait until you are verified by a admin");
             return "doctor/home";
@@ -48,7 +54,9 @@ public class DoctorController {
 
     @GetMapping("/completeProfile")
     public String completeProfile(Model model) {
+        List<DoctorExpertise> doctorExpertises = this.doctorService.doctorExpertises();
         model.addAttribute("doctorDto",new DoctorDto());
+        model.addAttribute("expertiseList",doctorExpertises);
         return "doctor/completeProfileInfo";
     }
 
@@ -65,6 +73,29 @@ public class DoctorController {
 
         this.doctorService.createDoctor(doctorDto,principal);
         redirectAttributes.addFlashAttribute("message",new Message("You Have submitted your data. wait until it is verified.","alert-success"));
-        return "redirect:/doctor/completeProfile";
+        return "redirect:/doctor/checkVerification";
+    }
+
+
+
+
+
+
+
+//    Hospital Process
+    @GetMapping("/apply-hospital")
+    public String applyInHospital(Model model) {
+        List<Hospital> hospitalList = this.adminService.unVerifiedHospitals(true);
+        model.addAttribute("timeSchedule",new DrReqTimeScheduleDto());
+        model.addAttribute("hospitalsList",hospitalList);
+        return "doctor/applyInHospital";
+    }
+
+    @PostMapping("/doApplyHospital")
+    public String doApplyHospital(@ModelAttribute DrReqTimeScheduleDto timeScheduleDto,RedirectAttributes redirectAttributes,Principal principal)
+    {
+        this.doctorService.requestToHospital(timeScheduleDto,principal);
+        redirectAttributes.addFlashAttribute("message",new Message("Success","alert-success"));
+        return "redirect:/doctor/";
     }
 }

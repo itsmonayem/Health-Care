@@ -1,6 +1,7 @@
 package com.example.healthcare.Controller;
 
 import com.example.healthcare.dto.HospitalDto;
+import com.example.healthcare.entities.DoctorRequestedSchedule;
 import com.example.healthcare.helper.Message;
 import com.example.healthcare.service.HospitalService;
 import jakarta.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/hospital")
@@ -59,5 +61,16 @@ public class HospitalController {
         this.hospitalService.createHospital(hospitalDto,principal);
         redirectAttributes.addFlashAttribute("message",new Message("Hospital Information Updated","alert-success"));
         return "redirect:/hospital/checkVerification";
+    }
+
+
+
+
+
+    @GetMapping("/approve-doctors")
+    public String  requestedDoctorsList(Model model){
+        List<DoctorRequestedSchedule> unVerifiedDoctors = this.hospitalService.getDoctorsByVerifications("notVerified");
+        model.addAttribute("unVerifiedDoctors",unVerifiedDoctors);
+        return "hospital/requestedDoctorsList";
     }
 }

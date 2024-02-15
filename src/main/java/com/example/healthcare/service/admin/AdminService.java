@@ -1,7 +1,7 @@
 package com.example.healthcare.service.admin;
 
-import com.example.healthcare.dao.DoctorRepository;
-import com.example.healthcare.dao.HospitalRepository;
+import com.example.healthcare.repositories.DoctorRepository;
+import com.example.healthcare.repositories.HospitalRepository;
 import com.example.healthcare.entities.Doctor;
 import com.example.healthcare.entities.Hospital;
 import org.springframework.stereotype.Component;

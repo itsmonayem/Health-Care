@@ -1,4 +1,4 @@
-package com.example.healthcare.dao;
+package com.example.healthcare.repositories;
 
 import com.example.healthcare.entities.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;

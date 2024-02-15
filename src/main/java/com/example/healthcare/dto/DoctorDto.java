@@ -1,5 +1,6 @@
 package com.example.healthcare.dto;
 
+import com.example.healthcare.entities.DoctorExpertise;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,5 @@ import lombok.Setter;
 public class DoctorDto {
     @NotEmpty(message = "Designation field should not be empty")
     private String designation;
-    @NotEmpty(message = "Speciality field should not be empty")
-    private String speciality;
+    private DoctorExpertise doctorExpertise;
 }

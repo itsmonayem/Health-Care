@@ -1,6 +1,6 @@
 package com.example.healthcare.service;
 
-import com.example.healthcare.dao.UserRepository;
+import com.example.healthcare.repositories.UserRepository;
 import com.example.healthcare.entities.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

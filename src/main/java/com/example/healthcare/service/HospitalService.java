@@ -1,7 +1,9 @@
 package com.example.healthcare.service;
 
-import com.example.healthcare.dao.HospitalRepository;
-import com.example.healthcare.dao.UserRepository;
+import com.example.healthcare.entities.DoctorRequestedSchedule;
+import com.example.healthcare.repositories.DrReqTimeScheRepository;
+import com.example.healthcare.repositories.HospitalRepository;
+import com.example.healthcare.repositories.UserRepository;
 import com.example.healthcare.dto.HospitalDto;
 import com.example.healthcare.entities.Hospital;
 import com.example.healthcare.entities.User;
@@ -9,17 +11,21 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.security.Principal;
+import java.util.List;
 
 @Component
 public class HospitalService {
     private final HospitalRepository hospitalRepository;
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
+    private final DrReqTimeScheRepository drReqTimeScheRepository;
 
-    public HospitalService(HospitalRepository hospitalRepository, ModelMapper modelMapper, UserRepository userRepository) {
+    public HospitalService(HospitalRepository hospitalRepository, ModelMapper modelMapper,
+                           UserRepository userRepository, DrReqTimeScheRepository drReqTimeScheRepository) {
         this.hospitalRepository = hospitalRepository;
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
+        this.drReqTimeScheRepository = drReqTimeScheRepository;
     }
 
     public void createHospital(HospitalDto hospitalDto, Principal principal) {
@@ -44,5 +50,10 @@ public class HospitalService {
         User user = this.userRepository.getUserByUserName(principal.getName());
         Hospital hospital = this.hospitalRepository.getHospitalByUserId(user.getId());
         return hospital.isCompleteProfile();
+    }
+
+
+    public List<DoctorRequestedSchedule> getDoctorsByVerifications(String string) {
+        return this.drReqTimeScheRepository.doctorsByVerification(string);
     }
 }

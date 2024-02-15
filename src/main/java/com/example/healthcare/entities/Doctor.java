@@ -19,6 +19,9 @@ public class Doctor {
     private long id;
     private String designation;
     private String speciality;
+    @OneToOne
+    @JoinColumn(name = "expertise_id")
+    private DoctorExpertise expertise;
     private boolean isCompleteProfile;
     private boolean isVerified;
     private boolean isDeclined;
