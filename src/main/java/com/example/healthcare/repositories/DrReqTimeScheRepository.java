@@ -10,4 +10,6 @@ import java.util.List;
 public interface DrReqTimeScheRepository extends JpaRepository<DoctorRequestedSchedule, Long> {
     @Query("select ds from DoctorRequestedSchedule ds where ds.status=:status")
     List<DoctorRequestedSchedule> doctorsByVerification(@Param("status") String status);
+
+    DoctorRequestedSchedule findById(long id);
 }

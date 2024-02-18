@@ -21,21 +21,21 @@
                         <th scope="col">Start Service Time</th>
                         <th scope="col">End Service Time</th>
                         <th scope="col">Contact no</th>
-                        <th scope="col">Action</th>
+<!--                        <th scope="col">Action</th>-->
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="doctorDetails: ${unVerifiedDoctors}">
+                    <tr th:each="doctorDetails: ${approvedDoctors}">
                         <th scope="row" th:text="${doctorDetails.id}"></th>
                         <td th:text="${doctorDetails.doctor.user.name}"></td>
                         <td th:text="${doctorDetails.doctor.expertise.expertiseField}"></td>
                         <td th:text="${doctorDetails.startScheduleTime}"></td>
                         <td th:text="${doctorDetails.endScheduleTime}"></td>
                         <td th:text="${doctorDetails.doctor.user.contact_no}"></td>
-                        <td>
-                            <a th:href="@{'/hospital/doApproveDoctor/'+${doctorDetails.id}}"  class="btn bg-primary btn-sm">Approved</a>
-                            <a th:href="@{'/hospital/doDenyDoctor/'+${doctorDetails.id}}"  class="btn btn-danger btn-sm">Declined</a>
-                        </td>
+<!--                        <td>-->
+<!--                            <a th:href="@{'/admin/doApproveDoctor/'+${doctorDetails.id}}"  class="btn bg-primary btn-sm">Approved</a>-->
+<!--                            <a th:href="@{'/admin/doDenyDoctor/'+${doctorDetails.id}}"  class="btn btn-danger btn-sm">Declined</a>-->
+<!--                        </td>-->
                     </tr>
                     </tbody>
                 </table>

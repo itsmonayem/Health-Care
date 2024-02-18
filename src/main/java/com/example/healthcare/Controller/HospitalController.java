@@ -8,10 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -72,5 +69,26 @@ public class HospitalController {
         List<DoctorRequestedSchedule> unVerifiedDoctors = this.hospitalService.getDoctorsByVerifications("notVerified");
         model.addAttribute("unVerifiedDoctors",unVerifiedDoctors);
         return "hospital/requestedDoctorsList";
+    }
+
+
+    @GetMapping("/doApproveDoctor/{id}")
+    public String doApproveDoctors(@PathVariable("id") long id){
+        this.hospitalService.setVerificationStatus(id,"approved");
+        return "redirect:/hospital/approve-doctors";
+    }
+
+    @GetMapping("/doDenyDoctor/{id}")
+    public String doDenyDoctor(@PathVariable("id") long id){
+        this.hospitalService.setVerificationStatus(id,"denied");
+        return "redirect:/hospitals/approve-doctors";
+    }
+
+
+    @GetMapping("/doctors")
+    public String approvedDoctors(Model model) {
+        List<DoctorRequestedSchedule> approvedDoctors = this.hospitalService.getDoctorsByVerifications("approved");
+        model.addAttribute("approvedDoctors",approvedDoctors);
+        return "hospital/doctors";
     }
 }

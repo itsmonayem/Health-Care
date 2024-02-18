@@ -9,9 +9,11 @@ import com.example.healthcare.entities.Hospital;
 import com.example.healthcare.entities.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class HospitalService {
@@ -52,7 +54,11 @@ public class HospitalService {
         return hospital.isCompleteProfile();
     }
 
-
+    public void setVerificationStatus(long id,String status) {
+        DoctorRequestedSchedule ds = this.drReqTimeScheRepository.findById(id);
+        ds.setStatus(status);
+        this.drReqTimeScheRepository.save(ds);
+    }
     public List<DoctorRequestedSchedule> getDoctorsByVerifications(String string) {
         return this.drReqTimeScheRepository.doctorsByVerification(string);
     }
