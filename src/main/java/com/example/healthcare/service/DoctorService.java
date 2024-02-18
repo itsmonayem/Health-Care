@@ -1,11 +1,8 @@
-package com.example.healthcare.service.Doctor;
+package com.example.healthcare.service;
 
 import com.example.healthcare.dto.DrReqTimeScheduleDto;
 import com.example.healthcare.entities.*;
-import com.example.healthcare.repositories.DoctorExpertiseRepository;
-import com.example.healthcare.repositories.DoctorRepository;
-import com.example.healthcare.repositories.DrReqTimeScheRepository;
-import com.example.healthcare.repositories.UserRepository;
+import com.example.healthcare.repositories.*;
 import com.example.healthcare.dto.DoctorDto;
 import com.example.healthcare.service.admin.AdminService;
 import org.modelmapper.ModelMapper;
@@ -21,16 +18,15 @@ public class DoctorService {
     private final UserRepository userRepository;
     private final DoctorExpertiseRepository expertiseRepository;
     private final DrReqTimeScheRepository timeScheduleRepository;
-    private final AdminService adminService;
+    private final AppointmentRepository appointmentRepository;
 
-    public DoctorService(ModelMapper modelMapper, DoctorRepository doctorRepository, UserRepository userRepository, DoctorExpertiseRepository expertiseRepository,
-                         DrReqTimeScheRepository timeScheduleRepository, AdminService adminService) {
+    public DoctorService(ModelMapper modelMapper, DoctorRepository doctorRepository, UserRepository userRepository, DoctorExpertiseRepository expertiseRepository, DrReqTimeScheRepository timeScheduleRepository, AppointmentRepository appointmentRepository) {
         this.modelMapper = modelMapper;
         this.doctorRepository = doctorRepository;
         this.userRepository = userRepository;
         this.expertiseRepository = expertiseRepository;
         this.timeScheduleRepository = timeScheduleRepository;
-        this.adminService = adminService;
+        this.appointmentRepository = appointmentRepository;
     }
 
     public void createDoctor(DoctorDto doctorDto, Principal principal) {
@@ -71,5 +67,12 @@ public class DoctorService {
         schedule.setDoctor(doctor);
         schedule.setStatus("notVerified");
         this.timeScheduleRepository.save(schedule);
+    }
+
+
+    public List<Appointment> getPendingAppointments(Principal principal) {
+        User user = this.userRepository.getUserByUserName(principal.getName());
+        Doctor doctor = this.doctorRepository.getDoctorByUserId(user.getId());
+        return this.appointmentRepository.getAppointmentHistoryByDoctorId(doctor.getId());
     }
 }

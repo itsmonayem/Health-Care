@@ -86,7 +86,8 @@
         <div class="sidebar">
             <a th:href="@{/doctor/}">Home</a>
 <!--            <a th:href="@{/doctor/patients}">Your Patients</a>-->
-            <a th:href="@{/doctor/Schedules}">Your Schedules</a>
+            <a th:href="@{/doctor/pending-patients}">Patients In queue</a>
+            <a th:href="@{/doctor/previous-patients}">Previous Patients</a>
             <a th:href="@{/doctor/apply-hospital}">Apply in Hospital</a>
             <a th:href="@{/doctor/pending-approvals}">Pending Approvals in Hospital</a>
             <a href="">Profile</a>
@@ -112,6 +113,16 @@
             <a th:href="@{/admin/users}">Users List</a>
             <a th:href="@{/admin/verify-doctors}">Pending Doctors</a>
             <a th:href="@{/admin/verify-hospitals}">Pending Hospitals</a>
+            <a href="#">Profile</a>
+        </div>
+    </div>
+
+    <div th:fragment="side-bar-user">
+        <div class="sidebar">
+            <a th:href="@{/user/}">Home</a>
+            <a th:href="@{/user/doctors}">View Doctors</a>
+            <a th:href="@{/user/appointment-history}">Appointments History</a>
+<!--            <a th:href="@{/user/users}"></a>-->
             <a href="#">Profile</a>
         </div>
     </div>

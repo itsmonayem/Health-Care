@@ -2,10 +2,11 @@ package com.example.healthcare.Controller;
 
 import com.example.healthcare.dto.DoctorDto;
 import com.example.healthcare.dto.DrReqTimeScheduleDto;
+import com.example.healthcare.entities.Appointment;
 import com.example.healthcare.entities.DoctorExpertise;
 import com.example.healthcare.entities.Hospital;
 import com.example.healthcare.helper.Message;
-import com.example.healthcare.service.Doctor.DoctorService;
+import com.example.healthcare.service.DoctorService;
 import com.example.healthcare.service.admin.AdminService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -97,5 +98,13 @@ public class DoctorController {
         this.doctorService.requestToHospital(timeScheduleDto,principal);
         redirectAttributes.addFlashAttribute("message",new Message("Success","alert-success"));
         return "redirect:/doctor/";
+    }
+
+
+    @GetMapping("/pending-patients")
+    public String getPendingPatients(Model model,Principal principal) {
+        List<Appointment> appointments = this.doctorService.getPendingAppointments(principal);
+        model.addAttribute("appointments",appointments);
+        return "doctor/appointment-history";
     }
 }

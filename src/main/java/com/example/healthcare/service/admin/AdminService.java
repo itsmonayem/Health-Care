@@ -19,7 +19,7 @@ public class AdminService {
     }
 
 
-    public List<Doctor> unVerifiedDoctors(boolean verificationStatus) {
+    public List<Doctor> findDoctorsByVerificationStatus(boolean verificationStatus) {
         return this.doctorRepository.findAllDoctorsByVerification(verificationStatus);
     }
 

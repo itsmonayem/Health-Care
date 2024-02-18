@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<section>
+    <div th:replace="fragments::upper-nav-login"></div>
+    <div th:replace="fragments::side-bar-doctor"></div>
+    <div class="new-container">
+        <div class="card col-md-10 offset-md-1" style="margin-top: 20px">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">AppointmentId</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">UserID</th>
+<!--                        <th scope="col">Status</th>-->
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="appointment: ${appointments}">
+                        <th scope="row" th:text="${appointment.id}"></th>
+                        <td th:text="${appointment.date}"></td>
+                        <td th:text="${appointment.user.name}"></td>
+                        <td th:text="${appointment.user.id}"></td>
+<!--                        <td th:text="${appointment.status}"></td>-->
+                        <td>
+                            <a th:href="@{'/doctor/prescribe/'+${appointment.id}}"  class="btn bg-primary btn-sm">Prescribe</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -7,35 +7,29 @@
 <body>
 <section>
     <div th:replace="fragments::upper-nav-login"></div>
-    <div th:replace="fragments::side-bar-hospitals"></div>
+    <div th:replace="fragments::side-bar-user"></div>
     <div class="new-container">
         <div class="card col-md-10 offset-md-1" style="margin-top: 20px">
             <div class="card-body">
-                <p>In Service Doctors</p>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">UserId</th>
+                        <th scope="col">DoctorId</th>
                         <th scope="col">Name</th>
                         <th scope="col">ExpertiseIn</th>
-                        <th scope="col">Start Service Time</th>
-                        <th scope="col">End Service Time</th>
                         <th scope="col">Contact no</th>
-<!--                        <th scope="col">Action</th>-->
+                        <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="doctorDetails: ${approvedDoctors}">
-                        <th scope="row" th:text="${doctorDetails.id}"></th>
-                        <td th:text="${doctorDetails.doctor.user.name}"></td>
-                        <td th:text="${doctorDetails.doctor.expertise.expertiseField}"></td>
-                        <td th:text="${doctorDetails.startScheduleTime}"></td>
-                        <td th:text="${doctorDetails.endScheduleTime}"></td>
-                        <td th:text="${doctorDetails.doctor.user.contact_no}"></td>
-<!--                        <td>-->
-<!--                            <a th:href="@{'/admin/doApproveDoctor/'+${doctorDetails.id}}"  class="btn bg-primary btn-sm">Approved</a>-->
-<!--                            <a th:href="@{'/admin/doDenyDoctor/'+${doctorDetails.id}}"  class="btn btn-danger btn-sm">Declined</a>-->
-<!--                        </td>-->
+                    <tr th:each="doctor: ${doctorsList}">
+                        <th scope="row" th:text="${doctor.id}"></th>
+                        <td th:text="${doctor.user.name}"></td>
+                        <td th:text="${doctor.expertise.expertiseField}"></td>
+                        <td th:text="${doctor.user.contact_no}"></td>
+                        <td>
+                            <a th:href="@{'/user/make-appointment/'+${doctor.id}}"  class="btn bg-primary btn-sm">Appointment</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

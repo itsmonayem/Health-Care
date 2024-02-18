@@ -32,14 +32,14 @@ public class AdminController {
 
     @GetMapping("/verify-doctors")
     public String verifyDoctors(Model model) {
-        List<Doctor> unVerifiedDoctorsList = this.doctorAdminService.unVerifiedDoctors(false);
+        List<Doctor> unVerifiedDoctorsList = this.doctorAdminService.findDoctorsByVerificationStatus(false);
         model.addAttribute("unVerifiedDoctorsList", unVerifiedDoctorsList);
         return "admin/verify-doctor-page";
     }
 
 
-    @GetMapping("/approveDoctor/{id}")
-    public String ApproveDoctor(@PathVariable("id") long user_id, Model model) {
+    @GetMapping("/approveDoctor/{user_id}")
+    public String ApproveDoctor(@PathVariable long user_id, Model model) {
         this.doctorAdminService.approvedDoctor(user_id);
         return "redirect:/admin/verify-doctors";
     }
@@ -47,7 +47,7 @@ public class AdminController {
 
     @GetMapping("/doctors")
     public String doctors(Model model) {
-        List<Doctor> inServiceDoctorsList = this.doctorAdminService.unVerifiedDoctors(true);
+        List<Doctor> inServiceDoctorsList = this.doctorAdminService.findDoctorsByVerificationStatus(true);
         model.addAttribute("inServiceDoctorsList",inServiceDoctorsList);
         return "admin/doctors";
     }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<section>
+    <div th:replace="fragments::upper-nav-login"></div>
+    <div th:replace="fragments::side-bar-user"></div>
+    <div class="signup">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="my-card mt-3">
+
+                        <!--                                                alert message-->
+                        <div th:if="${message}" th:classappend="${message.type}" class="alert" role="alert">
+                            <p th:text="${message.content}"></p>
+                        </div>
+
+
+                        <h1 class="text-center">Appointment Details</h1>
+                        <form th:action="@{'/user/appointmentDetails'}" method="post" th:object="${doctorDto}">
+
+
+                            <div class="mb-3">
+                                <label for="inputContact" class="form-label">Date</label>
+                                <input type="hidden" name="doctor_id" th:value="${doctor_id}">
+                                <input type="text"
+                                       class="form-control"
+                                       id="inputContact"
+                                       placeholder="Enter Here"
+                                       name="dateField"
+                                       required>
+                            </div>
+
+                            <div class="container text-center">
+                                <button type="submit" class="btn bg-primary text-white">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
