@@ -1,7 +1,7 @@
 package com.example.healthcare.service.admin;
 
 import com.example.healthcare.repositories.HospitalRepository;
-import com.example.healthcare.entities.Hospital;
+import com.example.healthcare.entity.Hospital;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

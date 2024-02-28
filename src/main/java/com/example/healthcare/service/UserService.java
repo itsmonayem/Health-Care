@@ -1,8 +1,8 @@
 package com.example.healthcare.service;
 
-import com.example.healthcare.entities.Appointment;
-import com.example.healthcare.entities.Doctor;
-import com.example.healthcare.entities.User;
+import com.example.healthcare.entity.Appointment;
+import com.example.healthcare.entity.Doctor;
+import com.example.healthcare.entity.User;
 import com.example.healthcare.repositories.AppointmentRepository;
 import com.example.healthcare.repositories.DoctorRepository;
 import com.example.healthcare.repositories.UserRepository;

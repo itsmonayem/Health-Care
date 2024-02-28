@@ -1,6 +1,6 @@
 package com.example.healthcare.dto;
 
-import com.example.healthcare.entities.DoctorExpertise;
+import com.example.healthcare.entity.DoctorExpertise;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

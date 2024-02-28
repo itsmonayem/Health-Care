@@ -1,7 +1,7 @@
 package com.example.healthcare.Controller;
 
-import com.example.healthcare.entities.Appointment;
-import com.example.healthcare.entities.Doctor;
+import com.example.healthcare.entity.Appointment;
+import com.example.healthcare.entity.Doctor;
 import com.example.healthcare.service.UserService;
 import com.example.healthcare.service.admin.AdminService;
 import org.springframework.stereotype.Controller;
@@ -9,14 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/user")

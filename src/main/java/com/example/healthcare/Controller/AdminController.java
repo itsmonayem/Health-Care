@@ -1,7 +1,7 @@
 package com.example.healthcare.Controller;
 
-import com.example.healthcare.entities.Doctor;
-import com.example.healthcare.entities.Hospital;
+import com.example.healthcare.entity.Doctor;
+import com.example.healthcare.entity.Hospital;
 import com.example.healthcare.service.admin.DoctorAdminService;
 import com.example.healthcare.service.admin.HospitalAdminService;
 import org.springframework.stereotype.Controller;

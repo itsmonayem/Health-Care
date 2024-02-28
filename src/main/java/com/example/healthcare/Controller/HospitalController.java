@@ -1,7 +1,7 @@
 package com.example.healthcare.Controller;
 
 import com.example.healthcare.dto.HospitalDto;
-import com.example.healthcare.entities.DoctorRequestedSchedule;
+import com.example.healthcare.entity.DoctorRequestedSchedule;
 import com.example.healthcare.helper.Message;
 import com.example.healthcare.service.HospitalService;
 import jakarta.validation.Valid;

@@ -12,8 +12,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class MyConfig {
-    @Autowired
-    public MySuccessHandler mySuccessHandler;
+    public final MySuccessHandler mySuccessHandler;
+
+    public MyConfig(MySuccessHandler mySuccessHandler) {
+        this.mySuccessHandler = mySuccessHandler;
+    }
+
     @Bean
     public UserDetailsService getUserDetailsService() {
         return new UserDetailsServiceImpl();

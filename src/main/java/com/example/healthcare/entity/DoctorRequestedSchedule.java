@@ -1,15 +1,10 @@
-package com.example.healthcare.entities;
+package com.example.healthcare.entity;
 
-import com.example.healthcare.helper.Day;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
 
 @Entity
 @NoArgsConstructor

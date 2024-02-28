@@ -19,37 +19,20 @@
 
                     <h1 class="text-center">Login Here</h1>
 
-                    <form method="post" th:action="@{/dologin}">
+                    <form method="post" th:action="@{/createPassword}">
                         <h3 th:if="${param.error}" class="alert alert-danger">Invalid Username and Password</h3>
                         <div class="mb-3">
-                            <label for="inputUserName" class="form-label">Your Email</label>
-                            <input type="email"
-                                   name="username"
+                            <label for="inputUserName" class="form-label">Enter your OTP</label>
+                            <input type="number"
+                                   name="clientOTP"
                                    class="form-control"
                                    id="inputUserName"
                                    placeholder="Enter Here">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="inputPass" class="form-label">Your Password</label>
-                            <input type="password"
-                                   class="form-control"
-                                   id="inputPass"
-                                   placeholder="Enter Here"
-                                   name="password">
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <a th:href="@{/forgot-password}">Forgot password?</a>
-                            </div>
-                            <div>
-                                <a th:href="@{/signup}">Register Here</a>
-                            </div>
-                        </div>
-
 
                         <div class="container text-center">
-                            <button type="submit" class="btn bg-primary text-white">Sign in</button>
+                            <button type="submit" class="btn bg-primary text-white">Submit</button>
                         </div>
                     </form>
                 </div>

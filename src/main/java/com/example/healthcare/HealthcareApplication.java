@@ -1,7 +1,7 @@
 package com.example.healthcare;
 
 import com.example.healthcare.repositories.UserRepository;
-import com.example.healthcare.entities.User;
+import com.example.healthcare.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

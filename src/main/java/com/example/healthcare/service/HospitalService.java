@@ -1,19 +1,17 @@
 package com.example.healthcare.service;
 
-import com.example.healthcare.entities.DoctorRequestedSchedule;
+import com.example.healthcare.entity.DoctorRequestedSchedule;
 import com.example.healthcare.repositories.DrReqTimeScheRepository;
 import com.example.healthcare.repositories.HospitalRepository;
 import com.example.healthcare.repositories.UserRepository;
 import com.example.healthcare.dto.HospitalDto;
-import com.example.healthcare.entities.Hospital;
-import com.example.healthcare.entities.User;
+import com.example.healthcare.entity.Hospital;
+import com.example.healthcare.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class HospitalService {

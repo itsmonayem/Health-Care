@@ -2,9 +2,9 @@ package com.example.healthcare.Controller;
 
 import com.example.healthcare.dto.DoctorDto;
 import com.example.healthcare.dto.DrReqTimeScheduleDto;
-import com.example.healthcare.entities.Appointment;
-import com.example.healthcare.entities.DoctorExpertise;
-import com.example.healthcare.entities.Hospital;
+import com.example.healthcare.entity.Appointment;
+import com.example.healthcare.entity.DoctorExpertise;
+import com.example.healthcare.entity.Hospital;
 import com.example.healthcare.helper.Message;
 import com.example.healthcare.service.DoctorService;
 import com.example.healthcare.service.admin.AdminService;

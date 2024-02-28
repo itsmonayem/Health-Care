@@ -1,6 +1,6 @@
 package com.example.healthcare.Controller;
 
-import com.example.healthcare.entities.User;
+import com.example.healthcare.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

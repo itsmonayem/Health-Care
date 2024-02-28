@@ -1,6 +1,6 @@
 package com.example.healthcare.config;
 
-import com.example.healthcare.entities.User;
+import com.example.healthcare.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

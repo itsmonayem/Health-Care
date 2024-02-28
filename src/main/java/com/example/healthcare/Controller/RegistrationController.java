@@ -1,7 +1,7 @@
 package com.example.healthcare.Controller;
 
 import com.example.healthcare.dto.UserDto;
-import com.example.healthcare.entities.User;
+import com.example.healthcare.entity.User;
 import com.example.healthcare.helper.Message;
 import com.example.healthcare.service.UserRegService;
 import jakarta.validation.Valid;

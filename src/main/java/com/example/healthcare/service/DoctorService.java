@@ -1,10 +1,9 @@
 package com.example.healthcare.service;
 
 import com.example.healthcare.dto.DrReqTimeScheduleDto;
-import com.example.healthcare.entities.*;
+import com.example.healthcare.entity.*;
 import com.example.healthcare.repositories.*;
 import com.example.healthcare.dto.DoctorDto;
-import com.example.healthcare.service.admin.AdminService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
